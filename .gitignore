@@ -1,0 +1,16 @@
+# Ignore SSH private keys (safety precaution) 
+*.pem 
+*.key 
+*.id_rsa 
+*.id_ed25519 
+# Ansible Vault password files (if ever used) 
+.vault_pass.txt 
+# Any sensitive temp files 
+*.retry 
+*.secret 
+# Fact cache (if enabled) 
+.fact_cache/ 
+# Backup files 
+*~ *.bak Logs *.log 
+# OS-specific
+.DS_Store Thumbs.db
