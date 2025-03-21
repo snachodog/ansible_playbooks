@@ -2,12 +2,12 @@
 This repository contains an Ansible playbook and inventory file to automate the installation and basic configuration of Fail2Ban on multiple Debian/Ubuntu servers. 
 
 ## `Contents fail2ban-setup.yaml` 
-— Ansible playbook to install and configure Fail2Ban ansiblehosts.yaml 
-— Inventory file listing the servers to manage 
+- Ansible playbook to install and configure Fail2Ban ansiblehosts.yaml 
+- Inventory file listing the servers to manage 
 
 ## Inventory File 
 The ansiblehosts.yaml file contains your target servers and connection details. 
-Example format: 
+**Example format:**
 ```
 [webservers] 
 192.168.1.219 ansible_user=steve ansible_ssh_private_key_file=/home/steve/.ssh/id_ed25519 ansible_become=true 
