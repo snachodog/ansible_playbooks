@@ -1,0 +1,41 @@
+- name: Install and configure Fail2Ban on all servers
+  hosts: all
+  become: true
+  vars:
+    # Customize as needed
+    bantime: 3600        # 1 hour ban time
+    findtime: 600        # 10 min window
+    maxretry: 5
+  tasks:
+    - name: Install Fail2Ban
+      apt:
+        name: fail2ban
+        state: present
+        update_cache: yes
+
+    - name: Ensure Fail2Ban service is enabled and running
+      service:
+        name: fail2ban
+        state: started
+        enabled: true
+
+    - name: Create custom jail.local config
+      copy:
+        dest: /etc/fail2ban/jail.local
+        content: |
+          [DEFAULT]
+          bantime = {{ bantime }}
+          findtime = {{ findtime }}
+          maxretry = {{ maxretry }}
+
+          [sshd]
+          enabled = true
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Restart Fail2Ban to apply config
+      service:
+        name: fail2ban
+        state: restarted
+
